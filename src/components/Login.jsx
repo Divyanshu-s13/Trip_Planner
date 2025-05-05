@@ -1,11 +1,10 @@
 import React from 'react'
-import Header from './Header'
+import { Link } from 'react-router-dom'
 
 
 const Login = () => {
   return (
     <>
-      <Header/>
       <div className='login'>
         <div>
           <h1>Log In</h1>
@@ -17,7 +16,7 @@ const Login = () => {
           
           <button>Log In</button>
           
-          <p>Don't have an account? <span>Signup</span></p>
+          <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
         </div>
       </div>
     </>

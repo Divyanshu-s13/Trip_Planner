@@ -20,7 +20,7 @@
   transition: background-color 0.3s ease;
 }
 
-.header h1 {
+.homeLogo{
   color: #ffffff;
   margin: 0;
   font-size: 2rem;
@@ -36,7 +36,7 @@
   align-items: center;
 }
 
-.navbar p {
+.links{
   color: #ffffff;
   margin: 0;
   font-weight: 500;
@@ -45,14 +45,14 @@
   position: relative;
 }
 
-.navbar p:hover {
+.links:hover {
   color: #94a3b8;
 }
 
 
 
 
-.navbar p::after {
+.links::after {
   content: '';
   position: absolute;
   bottom: -5px;
@@ -63,7 +63,7 @@
   transition: width 0.3s ease;
 }
 
-.navbar p:hover::after {
+.links:hover::after {
   width: 100%;
 }
 
