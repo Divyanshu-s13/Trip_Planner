@@ -1,42 +1,444 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background-color: #0f172a;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+.header h1 {
+  color: #ffffff;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  font-family: 'Segoe UI', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.navbar {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.navbar p {
+  color: #ffffff;
+  margin: 0;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navbar p:hover {
+  color: #94a3b8;
+}
+
+.navbar p::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #94a3b8;
+  transition: width 0.3s ease;
+}
+
+.navbar p:hover::after {
+  width: 100%;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .header {
+      padding: 1rem;
+  }
+  
+  .header h1 {
+      font-size: 1.5rem;
+  }
+  
+  .navbar {
+      gap: 1.5rem;
+  }
+  
+  .navbar p {
+      font-size: 0.9rem;
+  }
+}
+
+.body {
+  padding: 6rem 5% 3rem;
+  background-color: #f8fafc;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  animation: fadeIn 0.5s ease-in;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h1 {
+  font-size: 2.5rem;
+  color: #0f172a;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  max-width: 800px;
+  font-weight: 700;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+h1 span {
+  color: #818cf8; /* Changed span color to purple accent */
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+h2 {
+  font-size: 1.25rem;
+  color: #64748b;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 600px;
+  font-weight: 400;
+}
+
+button {
+  background-color: #94a3b8;
+  color: #0f172a;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #818cf8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .body {
+      padding: 5rem 5% 2rem;
   }
-  to {
-    transform: rotate(360deg);
+  
+  h1 {
+      font-size: 1.8rem;
+      padding: 0 1rem;
+  }
+  
+  h2 {
+      font-size: 1rem;
+      padding: 0 1rem;
+  }
+  
+  button {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (max-width: 480px) {
+  img {
+      border-radius: 15px;
   }
 }
 
-.card {
-  padding: 2em;
+.login {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px; /* Space for fixed header */
+  animation: fadeIn 0.5s ease-in;
 }
 
-.read-the-docs {
-  color: #888;
+.login > div {
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.login h1 {
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.login label {
+  display: block;
+  color: #475569;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.login input {
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #0f172a;
+  transition: all 0.3s ease;
+}
+
+.login input:focus {
+  outline: none;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+}
+
+.login input::placeholder {
+  color: #94a3b8;
+}
+
+.login p {
+  color: #64748b;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.login span {
+  color: #818cf8;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 0.3rem;
+}
+
+.login span:hover {
+  color: #6366f1;
+  text-decoration: underline;
+}
+
+.login button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #818cf8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.login button:hover {
+  background-color: #6366f1;
+  transform: translateY(-1px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .login > div {
+      width: 90%;
+      padding: 2rem;
+      margin: 0 1rem;
+  }
+  
+  .login h1 {
+      font-size: 1.75rem;
+  }
+  
+  .login input {
+      padding: 0.8rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login > div {
+      padding: 1.5rem;
+      border-radius: 12px;
+  }
+  
+  .login h1 {
+      font-size: 1.5rem;
+  }
+}
+
+.signup {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px; /* Space for fixed header */
+  animation: fadeIn 0.5s ease-in;
+}
+
+.signup > div {
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.signup h1 {
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.signup label {
+  display: block;
+  color: #475569;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.signup input {
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #0f172a;
+  transition: all 0.3s ease;
+}
+
+.signup input:focus {
+  outline: none;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+}
+
+.signup input::placeholder {
+  color: #94a3b8;
+}
+
+.signup p {
+  color: #64748b;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.signup span {
+  color: #818cf8;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 0.3rem;
+}
+
+.signup span:hover {
+  color: #6366f1;
+  text-decoration: underline;
+}
+
+.signup button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #818cf8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.signup button:hover {
+  background-color: #6366f1;
+  transform: translateY(-1px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .signup > div {
+      width: 90%;
+      padding: 2rem;
+      margin: 0 1rem;
+  }
+  
+  .signup h1 {
+      font-size: 1.75rem;
+  }
+  
+  .signup input {
+      padding: 0.8rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup > div {
+      padding: 1.5rem;
+      border-radius: 12px;
+  }
+  
+  .signup h1 {
+      font-size: 1.5rem;
+  }
 }
