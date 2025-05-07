@@ -8,25 +8,37 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 5%;
+  padding: 1rem;
   background-color: #0f172a;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   width: 100%;
+  height: 5rem;
   top: 0;
   left: 0;
   z-index: 1000;
-  box-sizing: border-box;
-  transition: background-color 0.3s ease;
 }
 
-.homeLogo{
-  color: #ffffff;
-  margin: 0;
-  font-size: 2rem;
+.homeLogo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+}
+
+.logo-img {
+  width: 60px;
+  height: 60px;
+  transition: transform 0.3s ease;
+  position: relative;
+  left: 1rem;
+}
+
+.homeLogo span {
+  color: #e8ecf1;
+  font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: -0.5px;
-  font-family: 'Segoe UI', sans-serif;
   transition: color 0.3s ease;
 }
 
@@ -36,23 +48,19 @@
   align-items: center;
 }
 
-.links{
-  color: #ffffff;
-  margin: 0;
+.nav-link {
+  color: #64748b;
+  text-decoration: none;
   font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
   position: relative;
+  transition: all 0.3s ease;
 }
 
-.links:hover {
+.nav-link:hover {
   color: #94a3b8;
 }
 
-
-
-
-.links::after {
+.nav-link::after {
   content: '';
   position: absolute;
   bottom: -5px;
@@ -63,8 +71,37 @@
   transition: width 0.3s ease;
 }
 
-.links:hover::after {
+.nav-link:hover::after {
   width: 100%;
+}
+
+/* Hover effects */
+.homeLogo:hover span {
+  color: #818cf8;
+}
+
+.homeLogo:hover .logo-img {
+  transform: scale(1.1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .header {
+      padding: 1rem;
+  }
+  
+  .homeLogo span {
+      font-size: 1.5rem;
+  }
+  
+  .logo-img {
+      width: 50px;
+      height: 50px;
+  }
+  
+  .nav-link {
+      font-size: 0.9rem;
+  }
 }
 
 /* Mobile Responsive */
@@ -87,7 +124,7 @@
 }
 
 .body {
-  padding: 6rem 5% 3rem;
+  padding: 11rem 5% 3rem;
   background-color: #f8fafc;
   min-height: 100vh;
   box-sizing: border-box;
@@ -108,17 +145,19 @@ h1 {
 }
 
 h1 span {
-  color: #818cf8; /* Changed span color to purple accent */
+  color: #818cf8;
   display: inline-block;
   transition: color 0.3s ease;
 }
 
 h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
   font-size: 1.25rem;
   color: #64748b;
   margin-bottom: 2.5rem;
-  line-height: 1.6;
-  max-width: 600px;
   font-weight: 400;
 }
 
@@ -126,27 +165,30 @@ button {
   background-color: #94a3b8;
   color: #0f172a;
   border: none;
-  padding: 1rem 2rem;
-  border-radius: 50px;
+  padding: 1rem 2.5rem; 
+  border-radius: 8px;    
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-bottom: 3rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: auto;
+  display: inline-block;
 }
 
 button:hover {
   background-color: #818cf8;
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px; 
 }
 
 img {
   max-width: 100%;
   height: auto;
   border-radius: 20px;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
   animation: float 4s ease-in-out infinite;
 }
 
@@ -156,13 +198,6 @@ img {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0px); }
-}
-
-/* Mobile Responsive */
 @media (max-width: 768px) {
   .body {
       padding: 5rem 5% 2rem;
@@ -174,8 +209,8 @@ img {
   }
   
   h2 {
-      font-size: 1rem;
-      padding: 0 1rem;
+    white-space: normal;
+    text-overflow: clip;
   }
   
   button {
@@ -197,7 +232,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 80px; /* Space for fixed header */
+  padding-top: 80px; 
   animation: fadeIn 0.5s ease-in;
 }
 
@@ -325,7 +360,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 80px; /* Space for fixed header */
+  padding-top: 80px;
   animation: fadeIn 0.5s ease-in;
 }
 
@@ -443,5 +478,194 @@ img {
   
   .signup h1 {
       font-size: 1.5rem;
+  }
+}
+/* Add to your existing CSS */
+.get-started-btn {
+  background-color: #818cf8;
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 3rem;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.get-started-btn:hover {
+  background-color: #6366f1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Update these styles in your CSS */
+.questionnaire-container {
+  margin-top: 5rem;
+  width: 100vw;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.questionnaire-header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+} 
+
+.questionnaire-header h1{
+  margin-left: 21rem;
+  color: #1e293b;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-group label {
+  display: block;
+  color: #1e293b;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+}
+
+.destination-select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.days-input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.budget-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.budget-card {
+  padding: 1.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.budget-card h4 {
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.budget-card p {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.budget-card.active {
+  border-color: #818cf8;
+  background-color: #f8fafc;
+}
+
+.companion-options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.companion-card {
+  padding: 0.8rem 1.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.companion-card.active {
+  border-color: #818cf8;
+  background-color: #f8fafc;
+  color: #818cf8;
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.submit-btn {
+  background: #818cf8;
+  color: white;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #6366f1;
+  transform: translateY(-2px);
+}
+
+.submit-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.back-link {
+  display: block;
+  margin-top: 1rem;
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: #818cf8;
+}
+
+@media (max-width: 768px) {
+  .questionnaire-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .budget-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .companion-options {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .companion-card {
+    width: 100%;
+    text-align: center;
   }
 }
