@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Questionnaire = () => {
   const [formData, setFormData] = useState({
@@ -12,43 +12,53 @@ const Questionnaire = () => {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('https://api.first.org/data/v1/countries')
       .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+        if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
       })
       .then(result => {
-        const countryList = Object.values(result.data).map(country => country.country)
-        setCountries(countryList.sort())
-        setLoading(false)
+        const countryList = Object.values(result.data).map(country => country.country);
+        setCountries(countryList.sort());
+        setLoading(false);
       })
       .catch(err => {
-        console.error('Error fetching countries:', err)
-        setError(err.message)
-        setLoading(false)
+        console.error('Error fetching countries:', err);
+        setError(err.message);
+        setLoading(false);
       });
   }, []);
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }))
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleGenerate = () => {
+    const { destination, days, budget, companions } = formData;
+
+    // Navigate to dynamic route with formData in state
+    navigate(`/itinerary/${destination}`, {
+      state: { tripData: { destination, days, budget, companions } }
+    });
   };
 
   return (
     <div className="questionnaire-container">
       <div className="questionnaire-header">
         <h1>Tell us your travel preferences 🌤️</h1>
-        <p className="subtitle">Just provide some basic information, and our trip planner will generate a customized itinerary based on your preferences.</p>
+        <p className="subtitle">
+          Just provide some basic information, and our trip planner will generate a customized itinerary based on your preferences.
+        </p>
       </div>
 
       <div className="form-section">
         <div className="form-group">
           <label>What is destination of choice?</label>
-          <select 
-            value={formData.destination} 
+          <select
+            value={formData.destination}
             onChange={(e) => handleInputChange('destination', e.target.value)}
             className="destination-select"
             disabled={loading}
@@ -79,30 +89,17 @@ const Questionnaire = () => {
         <div className="form-group">
           <label>What is Your Budget?</label>
           <div className="budget-options">
-            <button 
-              type="button"
-              className={`budget-card ${formData.budget === 'clear' ? 'active' : ''}`}
-              onClick={() => handleInputChange('budget', 'clear')}
-            >
-              <h4>Clear</h4>
-              <p>Stay conscious of costs</p>
-            </button>
-            <button 
-              type="button"
-              className={`budget-card ${formData.budget === 'moderate' ? 'active' : ''}`}
-              onClick={() => handleInputChange('budget', 'moderate')}
-            >
-              <h4>Moderate</h4>
-              <p>Keep cost on the average side</p>
-            </button>
-            <button 
-              type="button"
-              className={`budget-card ${formData.budget === 'luxury' ? 'active' : ''}`}
-              onClick={() => handleInputChange('budget', 'luxury')}
-            >
-              <h4>Luxury</h4>
-              <p>Don't worry about cost</p>
-            </button>
+            {['clear', 'moderate', 'luxury'].map(option => (
+              <button
+                key={option}
+                type="button"
+                className={`budget-card ${formData.budget === option ? 'active' : ''}`}
+                onClick={() => handleInputChange('budget', option)}
+              >
+                <h4>{option.charAt(0).toUpperCase() + option.slice(1)}</h4>
+                <p>{option === 'clear' ? 'Stay conscious of costs' : option === 'moderate' ? 'Keep cost on the average side' : "Don't worry about cost"}</p>
+              </button>
+            ))}
           </div>
         </div>
 
@@ -123,13 +120,14 @@ const Questionnaire = () => {
         </div>
 
         <div className="form-actions">
-          <button 
+          <button
             className="submit-btn"
+            onClick={handleGenerate}
             disabled={!formData.destination || !formData.days || !formData.budget || !formData.companions}
           >
             Generate My Itinerary
           </button>
-          <Link to="/" className="back-link">← Back to Home</Link> 
+          <Link to="/" className="back-link">← Back to Home</Link>
         </div>
       </div>
     </div>
