@@ -41,7 +41,7 @@ const Footer = () => {
           </nav>
 
           <div className="mt-20">
-            <h1 className="text-6xl font-extrabold tracking-tight text-white">Trip Planner</h1>
+            <h1 className="text-6xl font-extrabold tracking-tight text-white"><Link to='/'>Trip Planner</Link></h1>
             <p className="mt-2 text-sm text-white/50">Your AI-powered travel curator</p>
           </div>
         </div>
