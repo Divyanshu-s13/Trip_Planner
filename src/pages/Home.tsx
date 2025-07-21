@@ -1,21 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './high.css';
+import './high.css'; // Make sure it includes the updated styles
 
-const Header: React.FC = () => {
+const Header = () => {
   return (
-    <div className="body">
-      <h1>
-        <span>Discover Your Next Adventure with AI:</span> Personalized Itineraries at Your Fingertips
-      </h1>
+    <section className="hero-section">
+      <p className="hero-announcement">
+        Discover Your Next Adventure with AI:{' '}
+        <strong>Personalized Itineraries at Your Fingertips</strong>
+      </p>
+
+      <h1>Your personal trip planner and travel curator</h1>
+
       <h2>
-        Your personal trip planner and travel curator, creating custom itineraries tailored to your interests and budget.
+        Creating custom itineraries tailored to your interests and budget — faster than ever before.
       </h2>
+
       <Link to="/trip-planner" className="get-started-btn">
         Get Started, It's Free
       </Link>
+
       <img src="src/photos/a11.png" alt="Travel" />
-    </div>
+    </section>
   );
 };
 

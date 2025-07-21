@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Calendar, MapPin, Plus, Clock, DollarSign, Users } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Calendar, MapPin, Plus, Clock, DollarSign } from 'lucide-react';
 
 interface Activity {
   id: string;
@@ -24,13 +24,32 @@ const TripPlanner = () => {
   const [days, setDays] = useState<Day[]>([]);
   const [newActivity, setNewActivity] = useState({ name: '', time: '', cost: '', location: '' });
   const [selectedDay, setSelectedDay] = useState(0);
+  const [countries, setCountries] = useState<{ code: string; name: string }[]>([]);
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch('https://api.first.org/data/v1/countries');
+        const data = await response.json();
+        const countryList = Object.entries(data.data).map(([code, country]: any) => ({
+          code,
+          name: country.country,
+        }));
+        setCountries(countryList);
+      } catch (error) {
+        console.error('Failed to fetch countries:', error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
 
   const handleDateChange = () => {
     if (startDate && endDate) {
       const start = new Date(startDate);
       const end = new Date(endDate);
       const dayCount = Math.ceil((end.getTime() - start.getTime()) / (1000 * 3600 * 24)) + 1;
-      
+
       const newDays: Day[] = [];
       for (let i = 0; i < dayCount; i++) {
         const currentDate = new Date(start);
@@ -62,7 +81,7 @@ const TripPlanner = () => {
   };
 
   const getTotalCost = () => {
-    return days.reduce((total, day) => 
+    return days.reduce((total, day) =>
       total + day.activities.reduce((dayTotal, activity) => dayTotal + activity.cost, 0), 0
     );
   };
@@ -78,7 +97,7 @@ const TripPlanner = () => {
         {/* Trip Setup */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-6">Trip Details</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Trip Name</label>
@@ -93,13 +112,18 @@ const TripPlanner = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Destination</label>
-              <input
-                type="text"
+              <select
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="e.g., Paris, France"
-              />
+              >
+                <option value="">Select a country</option>
+                {countries.map((country) => (
+                  <option key={country.code} value={country.name}>
+                    {country.name}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
@@ -212,27 +236,27 @@ const TripPlanner = () => {
                       type="text"
                       placeholder="Activity name"
                       value={newActivity.name}
-                      onChange={(e) => setNewActivity({...newActivity, name: e.target.value})}
+                      onChange={(e) => setNewActivity({ ...newActivity, name: e.target.value })}
                       className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     <input
                       type="time"
                       value={newActivity.time}
-                      onChange={(e) => setNewActivity({...newActivity, time: e.target.value})}
+                      onChange={(e) => setNewActivity({ ...newActivity, time: e.target.value })}
                       className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     <input
                       type="text"
                       placeholder="Location"
                       value={newActivity.location}
-                      onChange={(e) => setNewActivity({...newActivity, location: e.target.value})}
+                      onChange={(e) => setNewActivity({ ...newActivity, location: e.target.value })}
                       className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     <input
                       type="number"
                       placeholder="Cost"
                       value={newActivity.cost}
-                      onChange={(e) => setNewActivity({...newActivity, cost: e.target.value})}
+                      onChange={(e) => setNewActivity({ ...newActivity, cost: e.target.value })}
                       className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
@@ -247,7 +271,7 @@ const TripPlanner = () => {
 
                 {/* Activities List */}
                 <div className="space-y-4">
-                  {days[selectedDay]?.activities.map((activity, index) => (
+                  {days[selectedDay]?.activities.map((activity) => (
                     <div
                       key={activity.id}
                       className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200"
