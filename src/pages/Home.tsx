@@ -20,7 +20,7 @@ const Header = () => {
         Get Started, It's Free
       </Link>
 
-      <img src="src/photos/a11.png" alt="Travel" />
+      <img src="/photos/a11.png" alt="Travel" />
     </section>
   );
 };
