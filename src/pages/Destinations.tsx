@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Search, Filter, Star, DollarSign, Clock, Users, Plane } from 'lucide-react';
+import { MapPin, Search, Star, DollarSign, Clock, Users, Plane } from 'lucide-react';
 
 interface Destination {
   id: string;

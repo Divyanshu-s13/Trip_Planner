@@ -11,6 +11,7 @@ const Navbar = () => {
     { to: '/trip-planner', label: 'Trip Planner' },
     { to: '/destinations', label: 'Destinations' },
     { to: '/about', label: 'About' },
+    { to: '/login', label: 'Login' },
   ];
 
   const isActive = (path: string) => location.pathname === path;

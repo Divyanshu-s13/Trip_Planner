@@ -7,6 +7,8 @@ import Destinations from './pages/Destinations';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
+import Login from './pages/Login';
+import Signup from './pages/Signup.tsx';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/trip-planner" element={<TripPlanner />} />
           <Route path="/destinations" element={<Destinations />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
