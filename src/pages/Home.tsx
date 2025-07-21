@@ -11,7 +11,7 @@ const Header: React.FC = () => {
       <h2>
         Your personal trip planner and travel curator, creating custom itineraries tailored to your interests and budget.
       </h2>
-      <Link to="/questionnaire" className="get-started-btn">
+      <Link to="/trip-planner" className="get-started-btn">
         Get Started, It's Free
       </Link>
       <img src="src/photos/a11.png" alt="Travel" />

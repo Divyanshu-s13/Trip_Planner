@@ -187,11 +187,10 @@ const TripPlanner = () => {
                 {/* Budget Summary */}
                 <div className="mt-6 p-4 bg-green-50 rounded-lg border border-green-200">
                   <div className="flex items-center space-x-2 mb-2">
-                    <DollarSign className="h-5 w-5 text-green-600" />
                     <h4 className="font-semibold text-green-800">Total Budget</h4>
                   </div>
-                  <p className="text-2xl font-bold text-green-700">${getTotalCost().toFixed(2)}</p>
-                  <p className="text-sm text-green-600">Per person: ${(getTotalCost() / travelers).toFixed(2)}</p>
+                  <p className="text-2xl font-bold text-green-700">{getTotalCost().toFixed(2)}</p>
+                  <p className="text-sm text-green-600">Per person: {(getTotalCost() / travelers).toFixed(2)}</p>
                 </div>
               </div>
             </div>
@@ -231,7 +230,7 @@ const TripPlanner = () => {
                     />
                     <input
                       type="number"
-                      placeholder="Cost ($)"
+                      placeholder="Cost"
                       value={newActivity.cost}
                       onChange={(e) => setNewActivity({...newActivity, cost: e.target.value})}
                       className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"

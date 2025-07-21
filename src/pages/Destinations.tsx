@@ -155,9 +155,9 @@ const Destinations = () => {
     }
   ];
 
-  const continents = ['all', 'Europe', 'Asia', 'North America', 'Oceania'];
-  const budgetTypes = ['all', 'budget', 'mid-range', 'luxury'];
-  const travelTypes = ['all', 'solo', 'couple', 'family', 'group'];
+  // const continents = ['all', 'Europe', 'Asia', 'North America', 'Oceania'];
+  // const budgetTypes = ['all', 'budget', 'mid-range', 'luxury'];
+  // const travelTypes = ['all', 'solo', 'couple', 'family', 'group'];
 
   const filteredDestinations = destinations.filter(destination => {
     const matchesSearch = destination.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -208,10 +208,9 @@ const Destinations = () => {
           </p>
         </div>
 
-        {/* Search and Filters */}
+
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            {/* Search */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <input
@@ -222,45 +221,6 @@ const Destinations = () => {
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-
-            {/* Continent Filter */}
-            <select
-              value={filterContinent}
-              onChange={(e) => setFilterContinent(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              {continents.map(continent => (
-                <option key={continent} value={continent}>
-                  {continent === 'all' ? 'All Continents' : continent}
-                </option>
-              ))}
-            </select>
-
-            {/* Budget Filter */}
-            <select
-              value={filterBudget}
-              onChange={(e) => setFilterBudget(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              {budgetTypes.map(budget => (
-                <option key={budget} value={budget}>
-                  {budget === 'all' ? 'All Budgets' : budget.charAt(0).toUpperCase() + budget.slice(1)}
-                </option>
-              ))}
-            </select>
-
-            {/* Travel Type Filter */}
-            <select
-              value={filterTravelType}
-              onChange={(e) => setFilterTravelType(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              {travelTypes.map(type => (
-                <option key={type} value={type}>
-                  {type === 'all' ? 'All Travel Types' : type.charAt(0).toUpperCase() + type.slice(1)}
-                </option>
-              ))}
-            </select>
           </div>
         </div>
 
