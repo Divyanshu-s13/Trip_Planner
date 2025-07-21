@@ -25,7 +25,7 @@ const Footer = () => {
               href="mailto:hello@tripplanner.ai"
               className="text-lg font-medium hover:text-white text-white/90 transition duration-200"
             >
-              hello@tripplanner.ai ↗
+              tripplanner@gmail.com
             </a>
           </div>
         </div>
@@ -47,15 +47,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Footer Bottom */}
-      <div className="mt-16 border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-white/40">
-        <p>&copy; 2025 Trip Planner. All rights reserved.</p>
-        <div className="flex gap-5 mt-4 md:mt-0">
-          <a href="#" className="hover:text-white">LinkedIn</a>
-          <a href="#" className="hover:text-white">Facebook</a>
-          <a href="#" className="hover:text-white">Twitter</a>
-        </div>
-      </div>
+      
     </footer>
   );
 };
