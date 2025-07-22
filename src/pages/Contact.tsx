@@ -14,7 +14,7 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
+
     setIsSubmitted(true);
     setTimeout(() => setIsSubmitted(false), 3000);
   };

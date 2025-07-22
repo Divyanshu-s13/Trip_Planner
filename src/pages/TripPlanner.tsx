@@ -289,8 +289,8 @@ const TripPlanner = () => {
                               <span>{activity.location || 'No location set'}</span>
                             </div>
                             <div className="flex items-center space-x-1">
-                              <DollarSign className="h-4 w-4" />
-                              <span>${activity.cost.toFixed(2)}</span>
+                              
+                              <span>{activity.cost.toFixed(2)}</span>
                             </div>
                           </div>
                         </div>
@@ -310,6 +310,7 @@ const TripPlanner = () => {
             </div>
           </div>
         )}
+
 
         {days.length === 0 && (
           <div className="bg-white rounded-lg shadow-md p-12 text-center">
